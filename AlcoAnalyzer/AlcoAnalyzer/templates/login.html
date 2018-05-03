@@ -1,0 +1,144 @@
+ <!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="/static/css/general.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script type = "text/javascript"
+         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    </head>
+
+    <body>
+    <!--Navbar-->
+    <nav>
+        <div class="nav-wrapper">
+            <a class="brand-logo">AlcoAnalyzer</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="row">
+    <div class="col s6">
+  <div><h4>A new way to analyze Student's performance</h4></div>
+  <div class="carousel">
+    <a class="carousel-item" href="#one!"><img src="/static/images/1a.jpg"></a>
+    <a class="carousel-item" href="#two!"><img src="/static/images/1b.jpg"></a>
+    <a class="carousel-item" href="#three!"><img src="/static/images/1c.jpg"></a>
+    <a class="carousel-item" href="#four!"><img src="/static/images/1d.jpg"></a>
+    <a class="carousel-item" href="#five!"><img src="/static/images/3a.jpg"></a>
+  </div>
+</div>
+
+
+    <!--<div class="row">-->
+        <!--<form class="col s12">-->
+            <!--<div class="row">-->
+                <!--<div class="row">-->
+                    <!--<div class="input-field col s2">-->
+                        <!--<input id="email" type="email" class="validate">-->
+                        <!--<label for="email">Email</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="row">-->
+                    <!--<div class="input-field col s2">-->
+                        <!--<input id="password" type="password" class="validate">-->
+                        <!--<label for="password">Password</label>-->
+                    <!--</div>-->
+                 <!--</div>-->
+            <!--</div>-->
+        <!--</form>-->
+    <!--</div>-->
+        <div class="col s6">
+    <div class="container">
+        <div class="row">
+        <div class="col s12 offset-m2">
+    <div class="card card_size center-align">
+    <div class="card-content">
+
+        <form>
+            <h2 class="header">Login</h2>
+            <div class="row">
+                <div class="input-field">
+                    <i class="material-icons prefix">local_post_office</i>
+                    <input name="email" id="email" type="email" class="validate">
+                    <label for="email">email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <i class="material-icons prefix">lock</i>
+                    <input name="password" id="password" type="password" class="validate">
+                    <label for="password">password</label>
+                </div>
+            </div>
+            <button class="btn waves-effect waves-light" id="login_submit" type="submit">Submit
+                <i class="material-icons right">send</i>
+            </button>
+            <div class="row">
+                <p>New User? <a id="signup" href="{{url_for('signup')}}">Sign-Up</a></p>
+            </div>
+        </form>
+    </div>
+    </div>
+        </div>
+        </div>
+    </div>
+        </div>
+        </div>
+
+      <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="/static/js/materialize.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            $('.carousel').carousel({
+                    padding: 100
+                });
+                autoplay()
+                function autoplay() {
+                    $('.carousel').carousel('next');
+                    setTimeout(autoplay, 2500);
+                }
+        });
+
+            $('#login_submit').click(function(event){
+                var logindata = {
+                    email: $('#email').val(),
+                    pwd: $('#password').val()
+                };
+                console.log(logindata)
+                $.get('/signin', logindata,(req, res)=>{
+                if(req == 'valid credentials'){
+
+                    sessionStorage.setItem('email', email);
+                    window.location = "/dashboard";
+                }
+                else if (req == 'invalid password'){
+                    alert('Invalid password');
+                    window.location = "/";
+
+                }
+
+                else if (req == 'invalid email'){
+                    alert("Invalid Email");
+                    window.location ="/";
+
+                }
+
+                else {
+                    alert("Something went wrong!! Please login again")
+                    window.location = "/";
+
+                }
+                });
+            });
+    </script>
+    </body>
+  </html>

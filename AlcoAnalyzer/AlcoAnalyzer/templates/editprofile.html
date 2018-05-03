@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="/static/css/general.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script type = "text/javascript"
+         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+
+    </head>
+
+    <body>
+    <!--Navbar-->
+    <nav>
+        <div class="nav-wrapper">
+            <a id="logo" class="brand-logo">AlcoAnalyzer</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+            </ul>
+        </div>
+    </nav>
+    <div class="container-sign-up">
+    <div class="card center-align">
+    <div class="card-content">
+    <div class="row">
+        <h2>Your Information</h2>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input disabled name="fname" value="" id="first_name" type="text" class="validate">
+          <label for="first_name"></label>
+        </div>
+          <div class="input-field col s6">
+          <input disabled name="lname" value="Doe" id="last_name" type="text" class="validate">
+          <label for="last_name"></label>
+        </div>
+          <div class="input-field col s6">
+          <input disabled name="email" id="email" type="email" class="validate" value="">
+          <label for="email"></label>
+        </div>
+          <div class="input-field col s6">
+          <input name="pwd" id="password" type="password" class="validate" value="abc">
+          <label for="password"></label>
+        </div>
+          <!--Age and Sex dropdowns-->
+          <div class="input-field col s4">
+            <select name="age" id="age">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+            </select>
+            <label>Age</label>
+        </div>
+          <div class=" sex input-field col s4">
+            <select name="sex" id="sex">
+                <option value="">Choose an option</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+            <label>Sex</label>
+        </div>
+          <div class="input-field col s4">
+            <select name="medu" id="medu">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="0">None</option>
+                <option value="1">Primary Education (4th grade)</option>
+                <option value="2">5th to 9th Grade</option>
+                <option value="3">Secondary Education</option>
+                <option value="4">Higher Education</option>
+            </select>
+            <label>Mother's Education</label>
+        </div>
+
+          <!--Mother Job Father Job-->
+          <div class="input-field col s6">
+            <select name="mjob" id="mjob">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="teacher">teacher</option>
+                <option value="health">'health' care related</option>
+                <option value="services">civil 'services' </option>
+                <option value="at_home">Home Maker</option>
+                <option value="other">other</option>
+            </select>
+            <label>Mother's Job</label>
+        </div>
+          <div class="input-field col s6">
+            <select name="fjob" id="fjob">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="teacher">teacher</option>
+                <option value="health">'health' care related</option>
+                <option value="services">civil 'services' </option>
+                <option value="at_home">Home Maker</option>
+                <option value="other">other</option>
+            </select>
+            <label>Father's Job</label>
+        </div>
+
+          <!--Reason, Studytime and  Schoold support-->
+          <div class="input-field col s3">
+            <select name="reason" id="reason">
+                <option value="" disabled selected></option>
+                <option value="home">close to 'home'</option>
+                <option value="reputation">school 'reputation'</option>
+                <option value="course">'course' preference </option>
+                <option value="other">other</option>
+            </select>
+            <label>Reason you selected the school</label>
+        </div>
+          <div class="input-field col s3">
+            <select name="studytime" id="studytime">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="1"><2 hours</option>
+                <option value="2">2 to 5 hours</option>
+                <option value="3">5 to 10 hours</option>
+                <option value="4">>10 hours</option>
+            </select>
+            <label>Weekly study time</label>
+        </div>
+          <div class="input-field col s3">
+            <select name="schoolsup" id="schoolsup">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <label>Is any tutor helping you in school?</label>
+        </div>
+          <div class="input-field col s3">
+            <select name="goout" id="goout">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <label>How often d you go out?</label>
+        </div>
+
+
+          <!--Higher Education, Daily Alcohol and Weekly alcohol-->
+          <div class="input-field col s4">
+            <select name="higher" id="higher">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <label>Interested in Higher Education?</label>
+        </div>
+          <div class="input-field col s4">
+            <select name="dalc" id="dalc">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <label>Daily Alcohol Consumption</label>
+        </div>
+          <div class="input-field col s4">
+            <select name="walc" id="walc">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <label>Weekly Alcohol Consumption</label>
+        </div>
+
+
+
+        <div class="input-field col s12">
+            <select name="famsup" id="famsup">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <label>Is your family supporting your education?</label>
+        </div>
+
+          <button id="update_prof" class="btn waves-effect waves-light">Update Profile
+            </button>
+      </div>
+    </div>
+    </div>
+        </div>
+    </div>
+     <!--<script>-->
+             <!--$(document).ready(function() {-->
+                    <!--$('select').material_select();-->
+                <!--});-->
+        <!--</script>-->
+        <script>
+            $('#update_prof').click(function(){
+                var data = {
+                    fname : $('#first_name').val(),
+                    lname : $('#last_name').val(),
+                    email : $('#email').val(),
+                    pwd : $('#password').val(),
+                    age : $('#age option:selected').val(),
+                    sex : $('#sex option:selected').val(),
+                    medu : $('#medu option:selected').val(),
+                    mjob : $('#mjob option:selected').val(),
+                    fjob : $('#fjob option:selected').val(),
+                    reason : $('#reason option:selected').val(),
+                    studytime : $('#studytime option:selected').val(),
+                    schoolsup : $('#schoolsup option:selected').val(),
+                    goout : $('#goout option:selected').val(),
+                    higher : $('#higher option:selected').val(),
+                    dalc : $('#dalc option:selected').val(),
+                    walc : $('#walc option:selected').val(),
+                    famsup : $('#famsup option:selected').val(),
+
+                }
+                $.post('/updateprofile', data, (req, res)=>{
+                    if(req == 'updated'){
+                        window.location = "/dashboard";
+                    }
+                    else{
+                        alert('Check all your data');
+                        window.location = "/editprofile";
+                    }
+
+                });
+            });
+
+            $('#logo').click(function(event){
+                window.location = '/dashboard';
+            });
+
+        </script>
+     <script>
+        $(document).ready(function(){
+            $('select').material_select();
+
+            var email = sessionStorage.getItem('email');
+            $.get('/getprofiledetails', (req, res)=>{
+                  var mydata = JSON.parse(req);
+                    $('#first_name').val(mydata[0].toString());
+                    $('#last_name').val(mydata[1].toString());
+                    $('#email').val(mydata[2].toString());
+                    $('#password').val(mydata[3].toString());
+                    $('#age').val(mydata[4].toString());
+                    $('#age').trigger('contentChanged');
+                    $('#sex').val(mydata[5].toString());
+                    $('#medu').val(mydata[6].toString());
+                    $('#mjob').val(mydata[7].toString());
+                    $('#fjob').val(mydata[8].toString());
+                    $('#reason').val(mydata[9].toString());
+                    $('#studytime').val(mydata[10].toString());
+                    $('#schoolsup').val(mydata[11].toString());
+                    $('#goout').val(mydata[12].toString());
+                    $('#higher').val(mydata[13].toString());
+                    $('#dalc').val(mydata[14].toString());
+                    $('#walc').val(mydata[15].toString());
+                    $('#famsup').val(mydata[16].toString());
+                     <!--var option_val = $("#sex").val();-->
+                     <!--$("#sex").find('option[value="' + option_val + '"]').prop("selected", true);-->
+
+                     <!--$("div.sex select").val('F');-->
+                     $('select').material_select();
+
+            });
+        });
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,552 @@
+ <!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="/static/css/general.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script type = "text/javascript"
+         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+      <style>
+
+
+      </style>
+
+      <!--<script>-->
+          <!--$(document).ready(function(){-->
+
+              <!--// Here specify your content or message, enclose between <p>-->
+              <!--var content = '<div class="modal-content"><p>my content</p></div>';-->
+
+              <!--$('.modal').append(content);-->
+              <!--$('.modal').modal();-->
+          <!--});-->
+      <!--</script>-->
+    </head>
+
+    <body>
+    <!--Navbar-->
+    <ul id="dropdown1" class="dropdown-content">
+
+
+
+        <li><a id="logout" name="action" methods="get">Logout</a></li>
+
+    </ul>
+
+    <!--modal structure-->
+
+
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Alcoanalyzer</h4>
+      <h5>A new way to analyze student's performance</h5>
+      <p>This application predicts your performance based on your activities, alcohol consumption and few other factors. It also gives you suggestions to improve your grades</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect btn-flat">Ok. Got it!</a>
+    </div>
+  </div>
+
+    <div id="modal2" class="modal">
+    <div id="modal2-content" class="modal-content">
+      <h4>Some Suggestions</h4>
+      <h5>Here are a few suggestions to consider</h5>
+      <!--<p><script>-->
+
+
+      <!--</script></p>-->
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect btn-flat">Ok. Got it!</a>
+    </div>
+  </div>
+
+    <!---->
+
+      <nav class="nav-extended">
+    <div class="nav-wrapper">
+      <a id="logo" class="brand-logo">Alcoanalyzer</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons left medium">account_circle</i></a></li>
+      </ul>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent">
+        <li class="tab"><a class="modal-trigger" href="#modal1">About</a></li>
+        <li class="tab"><a id="profile">Profile</a></li>
+        <li class="tab"><a class="active" href="" onclick="showDiv2()">Analysis</a></li>
+        <li class="tab"><a id="alco-compare" href="" onclick="showDiv()">Alcohol Compare</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+  <!--<div id="test2" class="col s12"></div>-->
+    <div id="analysis" style="" class="row">
+    <div class="col s6">
+        <h4>Predict your grades for the next exam</h4>
+          <div class="input-field col s3">
+              <select id="exam_select">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">Exam 1</option>
+                <option value="2">Exam 2</option>
+                <option value="3">Exam 3</option>
+              </select>
+              <label>Materialize Select</label>
+            </div>
+            <div class="input-field col s2">
+              <input id="exam1" type="number" class="validate">
+              <label for="exam1">Exam 1</label>
+            </div>
+            <div class="input-field col s2">
+              <input id="exam2" type="number" class="validate">
+              <label for="exam2">Exam 2</label>
+            </div>
+          <div>
+          <a class="waves-effect waves-light btn" id="analyze">Analyze</a>
+          </div>
+
+        <canvas id="gradechart" style="height:60vh; width:60vw"></canvas>
+
+      </div>
+      <div class="col s6">
+        <h4>Suggestions you want to consider</h4>
+        <div id="suggest"></div>
+
+      </div>
+      </div>
+    <div id="alcohol_comp" style="display:none;" class="row">
+      <h4>Average Student Alcohol Consumption vs You</h4>
+      <div class="col s6">
+      <h5>Your Daily Alcohol Consumption </h5><canvas id="small_box"></canvas>
+        <canvas id="alcochart" style="height:30vh; width:30vw"></canvas>
+      </div>
+      <div class="col s6">
+        <h5>Your Weekly Alcohol Consumption</h5><canvas id="small_box2"></canvas>
+        <canvas id="alcochart2" style="height:30vh; width:30vw"></canvas>
+    </div>
+      </div>
+
+
+
+
+
+<script type="text/javascript" src="/static/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/static/js/Chart.min.js"></script>
+    <script>
+
+    function showDiv(){
+      document.getElementById('alcohol_comp').style.display = "block";
+      document.getElementById('analysis').style.display="none";
+    }
+
+    function showDiv2(){
+      document.getElementById('alcohol_comp').style.display = "none";
+      document.getElementById('analysis').style.display="block";
+    }
+
+  var small_box_x = document.getElementById("small_box").getContext('2d');
+var small_box2_x = document.getElementById("small_box2").getContext('2d');
+
+
+
+
+  var ctx3 = document.getElementById("alcochart2").getContext('2d');
+  var alcochart2 = new Chart(ctx3, {
+    type: 'doughnut',
+    options: {
+        legend: {
+            display: true,
+            position: 'left',
+            labels: {
+                fontColor: 'rgb(0, 0, 0)'
+            }
+        }
+    },
+    data: {
+    labels: [
+        'Very Low',
+        'Low',
+        'Medium',
+        'High',
+        'Very High',
+    ],
+    datasets: [{
+
+        data: [0, 0, 0, 0, 0],
+        backgroundColor: ["#FFC300", "#FF5733","#C70039", "#900C3F","#581845"],
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+
+
+
+    },
+
+});
+
+
+    var ctx2 = document.getElementById("alcochart").getContext('2d');
+    var alcochart = new Chart(ctx2, {
+    type: 'doughnut',
+    options: {
+        legend: {
+            display: true,
+            position: 'left',
+            labels: {
+                fontColor: 'rgb(0, 0, 0)'
+            }
+        }
+    },
+    data: {
+    labels: [
+        'Very Low',
+        'Low',
+        'Medium',
+        'High',
+        'Very High',
+    ],
+    datasets: [{
+
+        data: [0, 0, 0, 0, 0],
+        backgroundColor: ["#FFC300", "#FF5733","#C70039", "#900C3F","#581845"],
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+
+
+
+    },
+
+});
+
+
+
+
+
+        var ctx = document.getElementById("gradechart").getContext('2d');
+     var gradechart =  new Chart(ctx, {
+    type: 'bar',
+    Display: false,
+    data: {
+      labels: ["Grade1", "Grade2", "Grade3"],
+      datasets: [
+        {
+          label: "Grades (1-20)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+          data: [0,0,0],
+          backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+
+        }
+      ]
+    },
+    options: {
+    scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Predicted Grades for upcoming exams'
+      }
+    }
+});
+
+
+        $(document).ready(function(){
+            $('.carousel').carousel();
+            $(".dropdown-trigger").dropdown();
+            $('.modal').modal();
+            $('select').formSelect();
+
+
+            <!--Loading Modal Dynamically-->
+              $.get('/getalldata', (req, res)=>{
+                            if(res){
+                              if(req == 'data1'){
+                                  var content = '<div class="modal-content"><p>Get Some Sleep <br/> Please stay cool </p></div>';
+                              }
+                              else{
+                                  var content = '<div class="modal-content"><p>Get Some nidde <br/> Please stay thunda </p></div>';
+                              }
+                            }
+                                $('#modal2-content').append(content);
+                                $('#modal2').modal();
+                });
+
+
+            $.get('/getdalcodata', (req,res)=>{
+              if(res){
+                var dalc_data = JSON.parse(req);
+                  alcochart.data.datasets[0].data=[parseInt(dalc_data[1]),parseInt(dalc_data[2]),parseInt(dalc_data[3]),parseInt(dalc_data[4]),parseInt(dalc_data[5])];
+                  alcochart.update();
+              }
+            });
+
+            $.get('/getwalcdata', (req,res)=>{
+                if(res){
+                  var walc_data = JSON.parse(req);
+                  alcochart2.data.datasets[0].data=[parseInt(walc_data[1]),parseInt(walc_data[2]),parseInt(walc_data[3]),parseInt(walc_data[4]),parseInt(walc_data[5])];
+                  alcochart2.update();
+                }
+            });
+
+            $.get('/getuseralcodata', (req, res)=>{
+                if(res){
+                  var user_alc_data = JSON.parse(req);
+                  if((user_alc_data.user_dalc) == 1){
+                      small_box_x.beginPath();
+                      small_box_x.rect(10,10,20,20);
+                      small_box_x.fillStyle = "#FFC300";
+                      small_box_x.fill();
+                  }
+                  else if((user_alc_data.user_dalc) == 2){
+                      small_box_x.beginPath();
+                      small_box_x.rect(10,10,20,20);
+                      small_box_x.fillStyle = "#FF5733";
+                      small_box_x.fill();
+                  }
+                  else if ((user_alc_data.user_dalc) == 3){
+                      small_box_x.beginPath();
+                      small_box_x.rect(20, 20,20,20);
+                      small_box_x.fillStyle = "#C70039";
+                      small_box_x.fill();
+                  }
+                  else if ((user_alc_data.user_dalc) == 4){
+                      small_box_x.beginPath();
+                      small_box_x.rect(10,10, 20,20);
+                      small_box_x.fillStyle = "#900C3F";
+                      small_box_x.fill();
+                  }
+                  else {
+                      small_box_x.beginPath();
+                      small_box_x.rect(10,10, 20, 20);
+                      small_box_x.fillStyle = "#581845";
+                      small_box_x.fill();
+                  }
+
+                  var user_alc_data1 = JSON.parse(req);
+                  if((user_alc_data1.user_walc) == 1){
+                      small_box2_x.beginPath();
+                      small_box2_x.rect(10,10,20,20);
+                      small_box2_x.fillStyle = "#FFC300";
+                      small_box2_x.fill();
+                  }
+                  else if((user_alc_data1.user_walc) == 2){
+                      small_box2_x.beginPath();
+                      small_box2_x.rect(10,10,20,20);
+                      small_box2_x.fillStyle = "#FF5733";
+                      small_box2_x.fill();
+                  }
+                  else if ((user_alc_data1.user_walc) == 3){
+                      small_box2_x.beginPath();
+                      small_box2_x.rect(20, 20,20,20);
+                      small_box2_x.fillStyle = "#C70039";
+                      small_box2_x.fill();
+                  }
+                  else if ((user_alc_data1.user_walc) == 4){
+                      small_box2_x.beginPath();
+                      small_box2_x.rect(10,10, 20,20);
+                      small_box2_x.fillStyle = "#900C3F";
+                      small_box2_x.fill();
+                  }
+                  else {
+                      small_box2_x.beginPath();
+                      small_box2_x.rect(10,10, 20, 20);
+                      small_box2_x.fillStyle = "#581845";
+                      small_box2_x.fill();
+                  }
+                }
+            });
+
+
+
+        });
+
+
+        $('#logout').click(function(event){
+                $.get('/logout', (req, res)=>{
+                  if (req=='logged out'){
+                    window.location='/';
+                  }
+                });
+         });
+
+
+
+        $('#profile').click(function(event){
+                $.get('/editprofile', (req, res) => {
+                  window.location = '/editprofile';
+        });
+        });
+
+        $('#logo').click(function(event){
+            window.location = '/dashboard';
+        });
+
+        $('#suggestion').click(function(event){
+            alert('Heyyy!!!')
+        })
+
+
+
+        $('#analyze').click(function(e){
+              $('#suggest').empty()
+             if($('#exam_select').val() == 1){
+                  if($('#exam1').val()!="" || $('#exam2').val()!=""){
+                      alert('You selected 1st exam, you cannot add previous grades');
+                  }
+
+                  else{
+                      var data = {
+                        exam1 : 0,
+                        exam2 : 0,
+                    }
+
+                       $.get('/getanalyzeddata', (req, res)=>{
+
+                    if(res){
+                      var grade =JSON.parse(req);
+                      gradechart.data.datasets[0].data=[grade.grade,0,0];
+                      gradechart.update();
+                      newdata = {
+                              exam : grade.grade,
+                            }
+                               $.get('/getsuggestions', newdata, (req, res)=>{
+                                  if(res){
+                                    var suggestions = JSON.parse(req);
+                                    console.log(suggestions);
+                                    var i;
+                                    for(i = 0; i <suggestions.length; i++){
+                                      var content = '<h5>' + suggestions[i] + '</h5><br/>'
+                                      $('#suggest').append(content);
+                                    }
+
+                                  }
+                      });
+
+
+                    }
+                  });
+                  }
+             }
+
+             else if($('#exam_select').val() == 2){
+                if($('#exam1').val()=="" || $('#exam2').val()!=""){
+                  alert('Enter exam 1 grades only')
+                }
+                else{
+                  var data = {
+                      exam1 : $('#exam1').val(),
+                      exam2 : 0
+                  }
+                  console.log(data)
+                  $.get('/getanalyzeddata2', data, (req, res)=>{
+
+                    if(res){
+                      var grade =JSON.parse(req);
+                      gradechart.data.datasets[0].data=[data.exam1,grade.grade,0];
+                      gradechart.update();
+
+                      newdata = {
+                              exam : grade.grade,
+                            }
+                               $.get('/getsuggestions', newdata, (req, res)=>{
+                                  if(res){
+                                    var suggestions = JSON.parse(req);
+                                    console.log(suggestions);
+                                    var i;
+                                    for(i = 0; i <suggestions.length; i++){
+                                      var content = '<h5>' + suggestions[i] + '</h5><br/>'
+                                      $('#suggest').append(content);
+                                    }
+
+                                  }
+                      });
+
+                    }
+                  });
+                }
+             }
+
+             else{
+                    if($('#exam1').val()=="" || $('#exam2').val()==""){
+                        alert('Please Enter both exam 1 and exam 2 grades')
+                    }
+
+                    else{
+                        var data = {
+                        exam1 : $('#exam1').val(),
+                        exam2 : $('#exam2').val(),
+                    }
+                    console.log(data)
+                    $.get('/getanalyzeddata3', data, (req, res)=>{
+                        if(res){
+                            var grade =JSON.parse(req);
+                            gradechart.data.datasets[0].data=[data.exam1,data.exam2,grade.grade];
+                            gradechart.update()
+                            newdata = {
+                              exam : grade.grade,
+                            }
+                               $.get('/getsuggestions', newdata, (req, res)=>{
+                                  if(res){
+                                    var suggestions = JSON.parse(req);
+                                    console.log(suggestions);
+                                    var i;
+                                    for(i = 0; i <suggestions.length; i++){
+                                      var content = '<h5>' + suggestions[i] + '</h5><br/>'
+                                      $('#suggest').append(content);
+                                    }
+
+                                  }
+                                });
+
+                            }
+                        });
+                    }
+
+
+
+            }
+
+
+});
+
+
+
+        <!---->
+        <!--$('#analyze').click(function(event){-->
+            <!--alert("Inside Analyze")-->
+         <!--});-->
+    </script>
+
+    </body>
+ </html>

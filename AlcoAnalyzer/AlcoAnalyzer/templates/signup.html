@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="/static/css/general.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script type = "text/javascript"
+         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            $('select').formSelect();
+        });
+
+    </script>
+    </head>
+
+    <body>
+    <!--Navbar-->
+    <nav>
+        <div class="nav-wrapper">
+            <a class="brand-logo">AlcoAnalyzer</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+            </ul>
+        </div>
+    </nav>
+    <div class="container-sign-up">
+    <div class="card center-align">
+    <div class="card-content">
+    <div class="row">
+        <h2>Sign-Up</h2>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="fname" id="first_name" type="text" class="validate">
+          <label for="first_name">First Name</label>
+        </div>
+          <div class="input-field col s6">
+          <input name="lname" id="last_name" type="text" class="validate">
+          <label for="last_name">Last Name</label>
+        </div>
+          <div class="input-field col s6">
+          <input name="email" id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+          <div class="input-field col s6">
+          <input name="pwd" id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+          <!--Age and Sex dropdowns-->
+          <div class="input-field col s4">
+            <select name="age" id="age">
+                <option disabled selected>Select an option</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+            </select>
+            <label>Age</label>
+        </div>
+          <div class="input-field col s4">
+            <select name="sex" id="sex">
+                <option disabled selected>Select an option</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+            <label>Sex</label>
+        </div>
+          <div class="input-field col s4">
+            <select name="medu" id="medu">
+                <option disabled selected>Select an option</option>
+                <option value="0">None</option>
+                <option value="1">Primary Education (4th grade)</option>
+                <option value="2">5th to 9th Grade</option>
+                <option value="3">Secondary Education</option>
+                <option value="4">Higher Education</option>
+            </select>
+            <label>Mother's Education</label>
+        </div>
+
+          <!--Mother Job Father Job-->
+          <div class="input-field col s6">
+            <select name="mjob" id="mjob">
+                <option disabled selected>Select an option</option>
+                <option value="teacher">teacher</option>
+                <option value="health">'health' care related</option>
+                <option value="services">civil 'services' </option>
+                <option value="at_home">Home Maker</option>
+                <option value="other">other</option>
+            </select>
+            <label>Mother's Job</label>
+        </div>
+          <div class="input-field col s6">
+            <select name="fjob" id="fjob">
+                <option disabled selected>Select an option</option>
+                <option value="teacher">Teacher</option>
+                <option value="health">Health care related</option>
+                <option value="services">Civil services' </option>
+                <option value="at_home">Home Maker</option>
+                <option value="other">Other</option>
+            </select>
+            <label>Father's Job</label>
+        </div>
+
+          <!--Reason, Studytime and  Schoold support-->
+          <div class="input-field col s3">
+            <select name="reason" id="reason">
+                <option disabled selected>Select an option</option>
+                <option value="home">Close to home</option>
+                <option value="reputation">School reputation</option>
+                <option value="course">Course preference</option>
+                <option value="other">Other</option>
+            </select>
+            <label>Reason you selected the school</label>
+        </div>
+          <div class="input-field col s3">
+            <select name="studytime" id="studytime">
+                <option disabled selected>Select an option</option>
+                <option value="1"><2 hours</option>
+                <option value="2">2 to 5 hours</option>
+                <option value="3">5 to 10 hours</option>
+                <option value="4">>10 hours</option>
+            </select>
+            <label>Weekly study time</label>
+        </div>
+          <div class="input-field col s3">
+            <select name="schoolsup" id="schoolsup">
+                <option disabled selected>Select an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <label>Is any tutor helping you in school?</label>
+        </div>
+          <div class="input-field col s3">
+            <select name="goout" id="goout">
+                <option disabled selected >1 lowest and 5 greatest</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <label>How often d you go out?</label>
+        </div>
+
+
+          <!--Higher Education, Daily Alcohol and Weekly alcohol-->
+          <div class="input-field col s4">
+            <select name="higher" id="higher">
+                <option disabled selected>Select an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <label>Interested in Higher Education?</label>
+        </div>
+          <div class="input-field col s4">
+            <select name="dalc" id="dalc">
+                <option disabled selected>1 lowest and 5 greatest</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <label>Daily Alcohol Consumption</label>
+        </div>
+          <div class="input-field col s4">
+            <select name="walc" id="walc">
+                <option disabled selected>1 lowest and 5 greatest</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <label>Weekly Alcohol Consumption</label>
+        </div>
+
+
+
+        <div class="input-field col s12">
+            <select name="famsup" required="" id="famsup">
+                <option value="" disabled selected>Select an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <label>Is your family supporting your education?</label>
+        </div>
+
+          <button id="signup" class="btn waves-effect waves-light">Sign-Up
+            </button>
+      </div>
+    </div>
+    </div>
+        </div>
+
+        </div>
+          <script type="text/javascript" src="/static/js/materialize.min.js"></script>
+    <script>
+        $('#signup').click(function(){
+            var data = {
+            fname : $('#first_name').val(),
+            lname : $('#last_name').val(),
+            email : $('#email').val(),
+            pwd : $('#password').val(),
+            age : $('#age option:selected').val(),
+            sex : $('#sex option:selected').val(),
+            medu : $('#medu option:selected').val(),
+            mjob : $('#mjob option:selected').val(),
+            fjob : $('#fjob option:selected').val(),
+            reason : $('#reason option:selected').val(),
+            studytime : $('#studytime option:selected').val(),
+            schoolsup : $('#schoolsup option:selected').val(),
+            goout : $('#goout option:selected').val(),
+            higher : $('#higher option:selected').val(),
+            dalc : $('#dalc option:selected').val(),
+            walc : $('#walc option:selected').val(),
+            famsup : $('#famsup option:selected').val(),
+        }
+
+        console.log(data);
+        $.post('/signUp', data, (req, res)=>{
+             window.location = "/dashboard";
+        });
+        });
+
+
+
+
+    </script>
+
+    </body>
+  </html>
